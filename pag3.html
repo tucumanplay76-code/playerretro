@@ -124,6 +124,44 @@
 </head>
 <body>
   <h1>RETRO PLAYER</h1>
+<!-- 🔵 BANNER CON LINK -->
+<a href="https://www.youtube.com/watch?v=peyc0LAwLUk" class="banner-info" target="_blank">
+  🎮 <strong>Cómo jugar online y poner en HD el juego</strong> ⚡
+</a>
+
+<style>
+/* ======== BANNER ESTILO ======== */
+.banner-info {
+  display: block;           /* Ocupa todo el ancho */
+  background: linear-gradient(90deg, #ffcc00 0%, #ff6600 100%);
+  color: #000;
+  text-align: center;
+  font-family: 'Press Start 2P', cursive; /* Fuente retro opcional */
+  padding: 15px 10px;
+  font-size: 14px;
+  letter-spacing: 1px;
+  border-bottom: 3px solid #000;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+  position: sticky;     /* Siempre visible al hacer scroll */
+  top: 0;
+  z-index: 9999;
+  text-decoration: none;    /* Quita subrayado */
+  transition: background 0.3s ease;
+}
+
+.banner-info:hover {
+  background: linear-gradient(90deg, #ffee00 0%, #ff8800 100%);
+}
+
+/* 🔹 Ajuste en pantallas chicas */
+@media (max-width: 600px) {
+  .banner-info {
+    font-size: 10px;
+    padding: 10px 5px;
+  }
+}
+</style>
+
 
   <!-- Navegación arriba -->
   <div class="nav">
@@ -198,6 +236,7 @@
   </script>
 </body>
 </html>
+
 
 
 
