@@ -1,0 +1,176 @@
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>RETRO PLAYER</title>
+
+  <!-- Fuente retro pixelada -->
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin:0; background:#0f1724; color:#fff;
+      font-family:Arial, sans-serif; display:flex;
+      flex-direction:column; align-items:center;
+    }
+
+    /* Estilo retro gamer para el título */
+    h1 {
+      margin:20px;
+      font-family: "Press Start 2P", monospace;
+      font-size: 36px;
+      color: #ff0040;
+      text-shadow:
+        2px 2px 0 #000,
+        -2px -2px 0 #000,
+        2px -2px 0 #000,
+        -2px 2px 0 #000;
+    }
+
+    /* Botones de navegación */
+    .nav {
+      margin:20px 0 10px;
+      display:flex; 
+      gap:20px;
+      flex-wrap: wrap;
+      justify-content:center;
+    }
+    .nav a {
+      background:linear-gradient(90deg,#7c5cff,#00d4ff);
+      color:#fff; 
+      text-decoration:none;
+      padding:10px 20px;
+      border-radius:8px;
+      font-size:16px;
+      transition:background .3s;
+    }
+    .nav a:hover {
+      background:linear-gradient(90deg,#5a3cff,#00a4cc);
+    }
+
+    /* Índice numérico con efecto */
+    .indice {
+      display:flex;
+      gap:12px;
+      margin:10px 0 30px;
+      justify-content:center;
+      flex-wrap:wrap;
+    }
+    .indice a {
+      color:#fff;
+      text-decoration:none;
+      padding:10px 16px;
+      border-radius:50%;
+      background:#555;
+      font-weight:bold;
+      transition:all 0.3s ease;
+      box-shadow:0 0 6px rgba(0,0,0,0.4);
+    }
+    .indice a:hover {
+      background:#0b70e3;
+      transform:scale(1.2);
+      box-shadow:0 0 12px #0b70e3;
+    }
+    .indice a.active {
+      background:#0b70e3;
+      color:#fff;
+      box-shadow:0 0 12px #0b70e3;
+    }
+
+    /* Grid de juegos */
+    .grid {
+      display:grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap:20px;
+      padding:20px;
+      max-width:1300px;
+    }
+    .game {
+      width:160px; height:220px;
+      border-radius:12px; overflow:hidden; 
+      cursor:pointer; 
+      transition:transform .3s, box-shadow .3s;
+      margin:auto;
+    }
+    .game img { width:100%; height:100%; object-fit:cover; }
+    .game:hover {
+      transform:scale(1.1);
+      box-shadow:0 8px 20px rgba(0,0,0,0.5);
+    }
+  </style>
+</head>
+<body>
+  <h1>RETRO PLAYER</h1>
+
+
+  <!-- Navegación arriba -->
+  <div class="nav">
+    
+    <a href="index.html">🏠 Página Principal</a>
+    <a href="pag2.html">➡ Página Siguiente</a>
+  </div>
+
+  <!-- ÍNDICE NUMÉRICO ARRIBA -->
+  <div class="indice">
+    <a href="index.html" class="active">1</a>
+    <a href="pag2.html">2</a>
+    <a href="pag3.html">3</a>
+    <a href="pag4.html">4</a>
+<a href="pag5.html">5</a> 
+  </div>
+
+  <div class="grid" id="grid">
+    <div class="game" data-rom="roms/streetII.html"><img src="img/stre.jpg" alt="Juego 1"></div>
+    <div class="game" data-rom="roms/sstreetII.html"><img src="img/sstre.jpg" alt="Juego 2"></div>
+    <div class="game" data-rom="roms/mk.html"><img src="img/mk.jpg" alt="Juego 3"></div>
+    <div class="game" data-rom="roms/mkII.html"><img src="img/mk2.jpg" alt="Juego 4"></div>
+    <div class="game" data-rom="roms/mk3.html"><img src="img/mk3.jpg" alt="Juego 5"></div>
+    <div class="game" data-rom="roms/metal.html"><img src="img/metal.jpg" alt="Juego 6"></div>
+    <div class="game" data-rom="roms/metal2.html"><img src="img/metal2.jpg" alt="Juego 7"></div>
+    <div class="game" data-rom="roms/metal3.html"><img src="img/metal3.jpg" alt="Juego 8"></div>
+    <div class="game" data-rom="roms/metal4.html"><img src="img/metal4.jpg" alt="Juego 9"></div>
+    <div class="game" data-rom="roms/metal5.html"><img src="img/metal5.jpg" alt="Juego 10"></div>
+    <div class="game" data-rom="roms/metal6.html"><img src="img/metal6.jpg" alt="Juego 11"></div>
+    <div class="game" data-rom="roms/metalx.html"><img src="img/metalx.jpg" alt="Juego 12"></div>
+    <div class="game" data-rom="roms/cabal.html"><img src="img/cabal.jpg" alt="Juego 13"></div>
+    <div class="game" data-rom="roms/cadino.html"><img src="img/cadino.jpg" alt="Juego 14"></div>
+    <div class="game" data-rom="roms/capvenga.html"><img src="img/capvenga.jpg" alt="Juego 15"></div>
+    <div class="game" data-rom="roms/capcom.html"><img src="img/capcom.jpg" alt="Juego 16"></div>
+    <div class="game" data-rom="roms/caveni.html"><img src="img/cavani.jpg" alt="Juego 17"></div>
+    <div class="game" data-rom="roms/coma.html."><img src="img/coma.jpg" alt="Juego 18"></div>
+    <div class="game" data-rom="roms/contra.html"><img src="img/contra.jpg" alt="Juego 19"></div>
+    <div class="game" data-rom="roms/finalf.html"><img src="img/finalf.jpg" alt="Juego 20"></div>
+    <div class="game" data-rom="roms/strera.html"><img src="img/strera.jpg" alt="Juego 21"></div>
+    <div class="game" data-rom="roms/strera3.html"><img src="img/strera3.jpg" alt="Juego 22"></div>
+    <div class="game" data-rom="roms/golde.html"><img src="img/golde.jpg" alt="Juego 23"></div>
+    <div class="game" data-rom="roms/golde2.html"><img src="img/golde2.jpg" alt="Juego 24"></div>
+  </div>
+
+  <div class="nav">
+    
+    <a href="index.html">🏠 Página Principal</a>
+    <a href="pag2.html">➡ Página Siguiente</a>
+  </div>
+
+  <!-- ÍNDICE NUMÉRICO ABAJO -->
+  <div class="indice">
+    <a href="index.html" class="active">1</a>
+    <a href="pag2.html">2</a>
+    <a href="pag3.html">3</a>
+    <a href="pag4.html">4</a>
+<a href="pag5.html">5</a> 
+  </div>
+
+  <script>
+    document.querySelectorAll(".game").forEach(game => {
+      game.addEventListener("click", () => {
+        const url = game.getAttribute("data-rom");
+        if (url) {
+          window.open(url, "_blank");
+        }
+      });
+    });
+  </script>
+</body>
+</html>
+
