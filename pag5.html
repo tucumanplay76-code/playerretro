@@ -9,17 +9,22 @@
 
   <style>
     body {
-      margin:0; background:#0f1724; color:#fff;
-      font-family:Arial, sans-serif; display:flex;
-      flex-direction:column; align-items:center;
+      margin:0;
+      background:#0f1724;
+      color:#fff;
+      font-family:Arial, sans-serif;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
     }
 
     /* Estilo retro gamer para el título */
     h1 {
       margin:20px;
-      font-family: "Press Start 2P", monospace;
-      font-size: 36px;
-      color: #ff0040;
+      font-family:"Press Start 2P", monospace;
+      font-size:clamp(20px, 5vw, 36px); /* 🔹 Se ajusta según pantalla */
+      color:#ff0040;
+      text-align:center;
       text-shadow:
         2px 2px 0 #000,
         -2px -2px 0 #000,
@@ -30,14 +35,14 @@
     /* Botones de navegación */
     .nav {
       margin:20px 0 10px;
-      display:flex; 
+      display:flex;
       gap:20px;
-      flex-wrap: wrap;
+      flex-wrap:wrap;
       justify-content:center;
     }
     .nav a {
       background:linear-gradient(90deg,#7c5cff,#00d4ff);
-      color:#fff; 
+      color:#fff;
       text-decoration:none;
       padding:10px 20px;
       border-radius:8px;
@@ -48,7 +53,7 @@
       background:linear-gradient(90deg,#5a3cff,#00a4cc);
     }
 
-    /* Índice numérico con efecto */
+    /* Índice numérico */
     .indice {
       display:flex;
       gap:12px;
@@ -77,29 +82,48 @@
       box-shadow:0 0 12px #0b70e3;
     }
 
-    /* Grid de juegos */
+    /* Grid de juegos (RESPONSIVO) */
     .grid {
       display:grid;
-      grid-template-columns: repeat(6, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); /* 🔹 Se adapta automáticamente */
       gap:20px;
       padding:20px;
+      width:100%;
       max-width:1300px;
+      box-sizing:border-box;
     }
     .game {
-      width:160px; height:220px;
-      border-radius:12px; overflow:hidden; 
-      cursor:pointer; 
+      width:100%;
+      aspect-ratio: 3 / 4; /* 🔹 Mantiene proporción */
+      border-radius:12px;
+      overflow:hidden;
+      cursor:pointer;
       transition:transform .3s, box-shadow .3s;
-      margin:auto;
     }
-    .game img { width:100%; height:100%; object-fit:cover; }
+    .game img {
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
     .game:hover {
-      transform:scale(1.1);
+      transform:scale(1.05);
       box-shadow:0 8px 20px rgba(0,0,0,0.5);
+    }
+
+    /* 📱 Ajustes para pantallas pequeñas */
+    @media (max-width:768px) {
+      .nav a { font-size:14px; padding:8px 14px; }
+      .indice a { padding:8px 14px; }
+    }
+
+    @media (max-width:480px) {
+      .nav a { font-size:12px; padding:6px 10px; }
+      .indice a { padding:6px 10px; }
     }
   </style>
 </head>
 <body>
+
   <h1>RETRO PLAYER</h1> 
  <!-- Navegación arriba -->
   <div class="nav">
