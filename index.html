@@ -1,239 +1,292 @@
-<html lang="es">
+<!DOCTYPE html>
+<html lang="es" class="h-full bg-neutral-950 text-white selection:bg-red-500 selection:text-white">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>RETRO PLAYER</title>
-
-  <!-- Fuente retro pixelada -->
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-
-  <style>
-    body {
-      margin:0;
-      background:#0f1724;
-      color:#fff;
-      font-family:Arial, sans-serif;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-    }
-
-    /* Estilo retro gamer para el título */
-    h1 {
-      margin:20px;
-      font-family:"Press Start 2P", monospace;
-      font-size:clamp(20px, 5vw, 36px); /* 🔹 Se ajusta según pantalla */
-      color:#ff0040;
-      text-align:center;
-      text-shadow:
-        2px 2px 0 #000,
-        -2px -2px 0 #000,
-        2px -2px 0 #000,
-        -2px 2px 0 #000;
-    }
-
-    /* Botones de navegación */
-    .nav {
-      margin:20px 0 10px;
-      display:flex;
-      gap:20px;
-      flex-wrap:wrap;
-      justify-content:center;
-    }
-    .nav a {
-      background:linear-gradient(90deg,#7c5cff,#00d4ff);
-      color:#fff;
-      text-decoration:none;
-      padding:10px 20px;
-      border-radius:8px;
-      font-size:16px;
-      transition:background .3s;
-    }
-    .nav a:hover {
-      background:linear-gradient(90deg,#5a3cff,#00a4cc);
-    }
-
-    /* Índice numérico */
-    .indice {
-      display:flex;
-      gap:12px;
-      margin:10px 0 30px;
-      justify-content:center;
-      flex-wrap:wrap;
-    }
-    .indice a {
-      color:#fff;
-      text-decoration:none;
-      padding:10px 16px;
-      border-radius:50%;
-      background:#555;
-      font-weight:bold;
-      transition:all 0.3s ease;
-      box-shadow:0 0 6px rgba(0,0,0,0.4);
-    }
-    .indice a:hover {
-      background:#0b70e3;
-      transform:scale(1.2);
-      box-shadow:0 0 12px #0b70e3;
-    }
-    .indice a.active {
-      background:#0b70e3;
-      color:#fff;
-      box-shadow:0 0 12px #0b70e3;
-    }
-
-    /* Grid de juegos (RESPONSIVO) */
-    .grid {
-      display:grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); /* 🔹 Se adapta automáticamente */
-      gap:20px;
-      padding:20px;
-      width:100%;
-      max-width:1300px;
-      box-sizing:border-box;
-    }
-    .game {
-      width:100%;
-      aspect-ratio: 3 / 4; /* 🔹 Mantiene proporción */
-      border-radius:12px;
-      overflow:hidden;
-      cursor:pointer;
-      transition:transform .3s, box-shadow .3s;
-    }
-    .game img {
-      width:100%;
-      height:100%;
-      object-fit:cover;
-    }
-    .game:hover {
-      transform:scale(1.05);
-      box-shadow:0 8px 20px rgba(0,0,0,0.5);
-    }
-
-    /* 📱 Ajustes para pantallas pequeñas */
-    @media (max-width:768px) {
-      .nav a { font-size:14px; padding:8px 14px; }
-      .indice a { padding:8px 14px; }
-    }
-
-    @media (max-width:480px) {
-      .nav a { font-size:12px; padding:6px 10px; }
-      .indice a { padding:6px 10px; }
-    }
-  </style>
-</head>
-<body>
-
-  <h1>RETRO PLAYER</h1>
-<!-- 🔵 BANNER CON LINK -->
-<a href="https://www.youtube.com/watch?v=peyc0LAwLUk" class="banner-info" target="_blank">
-  🎮 <strong>Cómo jugar online y poner en HD el juego</strong> ⚡
-</a>
-
-<style>
-/* ======== BANNER ESTILO ======== */
-.banner-info {
-  display: block;           /* Ocupa todo el ancho */
-  background: linear-gradient(90deg, #ffcc00 0%, #ff6600 100%);
-  color: #000;
-  text-align: center;
-  font-family: 'Press Start 2P', cursive; /* Fuente retro opcional */
-  padding: 15px 10px;
-  font-size: 14px;
-  letter-spacing: 1px;
-  border-bottom: 3px solid #000;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-  position: sticky;     /* Siempre visible al hacer scroll */
-  top: 0;
-  z-index: 9999;
-  text-decoration: none;    /* Quita subrayado */
-  transition: background 0.3s ease;
-}
-
-.banner-info:hover {
-  background: linear-gradient(90deg, #ffee00 0%, #ff8800 100%);
-}
-
-/* 🔹 Ajuste en pantallas chicas */
-@media (max-width: 600px) {
-  .banner-info {
-    font-size: 10px;
-    padding: 10px 5px;
-  }
-}
-</style>
-
-
-
-  <!-- Navegación arriba -->
-  <div class="nav">
-    
-    <a href="index.html">🏠 Página Principal</a>
-    <a href="pag2.html">➡ Página Siguiente</a>
-  </div>
-
-  <!-- ÍNDICE NUMÉRICO ARRIBA -->
-  <div class="indice">
-    <a href="index.html" class="active">1</a>
-    <a href="pag2.html">2</a>
-    <a href="pag3.html">3</a>
-    <a href="pag4.html">4</a>
-<a href="pag5.html">5</a> 
-  </div>
-
-  <div class="grid" id="grid">
-    <div class="game" data-rom="roms/streetII.html"><img src="img/stre.jpg" alt="Juego 1"></div>
-    <div class="game" data-rom="roms/sstreetII.html"><img src="img/sstre.jpg" alt="Juego 2"></div>
-    <div class="game" data-rom="roms/mk.html"><img src="img/mk.jpg" alt="Juego 3"></div>
-    <div class="game" data-rom="roms/mkII.html"><img src="img/mk2.jpg" alt="Juego 4"></div>
-    <div class="game" data-rom="roms/mk3.html"><img src="img/mk3.jpg" alt="Juego 5"></div>
-    <div class="game" data-rom="roms/metal.html"><img src="img/metal.jpg" alt="Juego 6"></div>
-    <div class="game" data-rom="roms/metal2.html"><img src="img/metal2.jpg" alt="Juego 7"></div>
-    <div class="game" data-rom="roms/metal3.html"><img src="img/metal3.jpg" alt="Juego 8"></div>
-    <div class="game" data-rom="roms/metal4.html"><img src="img/metal4.jpg" alt="Juego 9"></div>
-    <div class="game" data-rom="roms/metal5.html"><img src="img/metal5.jpg" alt="Juego 10"></div>
-    <div class="game" data-rom="roms/metal6.html"><img src="img/metal6.jpg" alt="Juego 11"></div>
-    <div class="game" data-rom="roms/metalx.html"><img src="img/metalx.jpg" alt="Juego 12"></div>
-    <div class="game" data-rom="roms/cabal.html"><img src="img/cabal.jpg" alt="Juego 13"></div>
-    <div class="game" data-rom="roms/cadino.html"><img src="img/cadino.jpg" alt="Juego 14"></div>
-    <div class="game" data-rom="roms/capvenga.html"><img src="img/capvenga.jpg" alt="Juego 15"></div>
-    <div class="game" data-rom="roms/capcom.html"><img src="img/capcom.jpg" alt="Juego 16"></div>
-    <div class="game" data-rom="roms/caveni.html"><img src="img/cavani.jpg" alt="Juego 17"></div>
-    <div class="game" data-rom="roms/coma.html."><img src="img/coma.jpg" alt="Juego 18"></div>
-    <div class="game" data-rom="roms/contra.html"><img src="img/contra.jpg" alt="Juego 19"></div>
-    <div class="game" data-rom="roms/finalf.html"><img src="img/finalf.jpg" alt="Juego 20"></div>
-    <div class="game" data-rom="roms/strera.html"><img src="img/strera.jpg" alt="Juego 21"></div>
-    <div class="game" data-rom="roms/strera3.html"><img src="img/strera3.jpg" alt="Juego 22"></div>
-    <div class="game" data-rom="roms/golde.html"><img src="img/golde.jpg" alt="Juego 23"></div>
-    <div class="game" data-rom="roms/golde2.html"><img src="img/golde2.jpg" alt="Juego 24"></div>
-  </div>
-
-  <div class="nav">
-    
-    <a href="index.html">🏠 Página Principal</a>
-    <a href="pag2.html">➡ Página Siguiente</a>
-  </div>
-
-  <!-- ÍNDICE NUMÉRICO ABAJO -->
-  <div class="indice">
-    <a href="index.html" class="active">1</a>
-    <a href="pag2.html">2</a>
-    <a href="pag3.html">3</a>
-    <a href="pag4.html">4</a>
-<a href="pag5.html">5</a> 
-  </div>
-
-  <script>
-    document.querySelectorAll(".game").forEach(game => {
-      game.addEventListener("click", () => {
-        const url = game.getAttribute("data-rom");
-        if (url) {
-          window.open(url, "_blank");
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Player Retro - Pantalla Completa</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['system-ui', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'neon': '0 0 15px rgba(239, 68, 68, 0.5)',
+                        'neon-blue': '0 0 15px rgba(59, 130, 246, 0.5)',
+                    }
+                }
+            }
         }
-      });
-    });
-  </script>
+    </script>
+    <style>
+        /* Ocultar barra de desplazamiento por defecto */
+        ::-webkit-scrollbar {
+            display: none;
+        }
+        html, body {
+            overflow: hidden;
+            scrollbar-width: none; /* Firefox */
+        }
+    </style>
+</head>
+<body class="h-full w-full flex flex-col items-center justify-center m-0 p-0 font-sans">
+
+    <!-- PANTALLA DE INICIO / ACTIVACIÓN -->
+    <div id="welcome-screen" class="absolute inset-0 z-50 flex flex-col items-center justify-center bg-neutral-950 px-4 text-center transition-all duration-500">
+        <!-- Fondo Decorativo Retro -->
+        <div class="absolute inset-0 bg-[linear-gradient(to_right,#171717_1px,transparent_1px),linear-gradient(to_bottom,#171717_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-40"></div>
+        
+        <div class="relative z-10 max-w-md w-full p-8 rounded-2xl bg-neutral-900/80 border border-neutral-800 backdrop-blur-md shadow-2xl">
+            <!-- Icono Decorativo -->
+            <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-red-500/10 text-red-500 mb-6 shadow-neon">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z" />
+                </svg>
+            </div>
+
+            <h1 class="text-3xl font-extrabold tracking-tight bg-gradient-to-r from-red-500 via-orange-400 to-yellow-500 bg-clip-text text-transparent mb-2">
+                PLAYER RETRO
+            </h1>
+            <p class="text-sm text-neutral-400 mb-8">
+                Entra a esta pagina para jugar juegos retro
+            </p>
+
+            <button id="start-btn" class="w-full py-4 px-6 rounded-xl bg-red-600 hover:bg-red-500 active:scale-[0.98] transition-all duration-200 text-white font-semibold shadow-neon hover:shadow-red-500/40 text-lg flex items-center justify-center gap-3">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15" />
+                </svg>
+                Iniciar 
+            </button>
+
+            <p class="text-[11px] text-neutral-500 mt-6 leading-relaxed">
+                Nota: Se solicitará permiso para alternar el modo de pantalla completa de su navegador para una experiencia inmersiva.
+            </p>
+        </div>
+    </div>
+
+    <!-- CONTENEDOR PRINCIPAL DEL JUEGO / REPRODUCTOR -->
+    <div id="app-container" class="relative w-full h-full hidden bg-black flex flex-col">
+        
+        <!-- IFRAME DEL REPRODUCTOR RETRO -->
+        <iframe 
+            id="player-iframe" 
+            src="about:blank" 
+            class="w-full h-full border-none m-0 p-0"
+            allow="autoplay; fullscreen; gamepad; keyboard"
+            allowfullscreen>
+        </iframe>
+
+        <!-- MENÚ FLOTANTE DE CONTROL (Auto-ocultable) -->
+        <div id="control-bar" class="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-2 bg-neutral-900/90 hover:bg-neutral-900 border border-neutral-800/80 backdrop-blur-md py-2 px-4 rounded-full shadow-2xl opacity-0 hover:opacity-100 transition-opacity duration-300 z-40 group">
+            
+            <!-- Indicador táctil / Visual de arrastre o presencia -->
+            <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-neutral-800 border border-neutral-700/50 text-[9px] text-neutral-400 px-2 py-0.5 rounded-full pointer-events-none group-hover:opacity-0 transition-opacity duration-200">
+                Menú flotante
+            </div>
+
+            <!-- Botón Recargar -->
+            <button id="reload-btn" title="Recargar Reproductor" class="p-2.5 rounded-full hover:bg-neutral-800 text-neutral-300 hover:text-white transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" />
+                </svg>
+            </button>
+
+            <span class="w-[1px] h-6 bg-neutral-800"></span>
+
+            <!-- Botón Toggle Pantalla Completa -->
+            <button id="fullscreen-btn" title="Alternar Pantalla Completa" class="p-2.5 rounded-full hover:bg-neutral-800 text-neutral-300 hover:text-white transition-colors">
+                <svg id="fullscreen-icon-enter" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15" />
+                </svg>
+                <svg id="fullscreen-icon-exit" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 hidden">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 9V4.5M9 9H4.5M9 9 3.75 3.75M9 15v4.5M9 15H4.5M9 15l-5.25 5.25M15 9V4.5M15 9h4.5M15 9l5.25-5.25M15 15v4.5M15 15h4.5m-4.5 0 5.25 5.25" />
+                </svg>
+            </button>
+
+            <span class="w-[1px] h-6 bg-neutral-800"></span>
+
+            <!-- Botón Salir / Volver -->
+            <button id="exit-btn" title="Cerrar y Volver al Menú" class="p-2.5 rounded-full hover:bg-red-500/10 text-red-400 hover:text-red-300 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+
+        <!-- NOTIFICACIÓN DE ESTADO -->
+        <div id="toast" class="absolute top-6 left-1/2 -translate-x-1/2 px-4 py-2 rounded-xl bg-neutral-900 border border-neutral-800 text-xs text-neutral-300 shadow-2xl opacity-0 transform translate-y-[-10px] transition-all duration-300 pointer-events-none z-50">
+            <!-- Contenido dinámico -->
+        </div>
+    </div>
+
+    <!-- SCRIPT DE CONTROL -->
+    <script>
+        const targetUrl = "https://tucumanplay76-code.github.io/playerretro/";
+        
+        const welcomeScreen = document.getElementById('welcome-screen');
+        const startBtn = document.getElementById('start-btn');
+        const appContainer = document.getElementById('app-container');
+        const playerIframe = document.getElementById('player-iframe');
+        
+        // Elementos de la barra de control
+        const controlBar = document.getElementById('control-bar');
+        const reloadBtn = document.getElementById('reload-btn');
+        const fullscreenBtn = document.getElementById('fullscreen-btn');
+        const exitBtn = document.getElementById('exit-btn');
+        
+        // Iconos de pantalla completa
+        const fsIconEnter = document.getElementById('fullscreen-icon-enter');
+        const fsIconExit = document.getElementById('fullscreen-icon-exit');
+        const toast = document.getElementById('toast');
+
+        // Función para mostrar mensajes flotantes
+        function showToast(message, duration = 3000) {
+            toast.textContent = message;
+            toast.classList.remove('opacity-0', 'translate-y-[-10px]');
+            toast.classList.add('opacity-100', 'translate-y-0');
+            
+            setTimeout(() => {
+                toast.classList.remove('opacity-100', 'translate-y-0');
+                toast.classList.add('opacity-0', 'translate-y-[-10px]');
+            }, duration);
+        }
+
+        // Solicitar pantalla completa en el contenedor
+        function launchFullscreen(element) {
+            if (element.requestFullscreen) {
+                element.requestFullscreen();
+            } else if (element.mozRequestFullScreen) { // Firefox
+                element.mozRequestFullScreen();
+            } else if (element.webkitRequestFullscreen) { // Chrome, Safari y Opera
+                element.webkitRequestFullscreen();
+            } else if (element.msRequestFullscreen) { // IE/Edge
+                element.msRequestFullscreen();
+            }
+        }
+
+        // Salir de pantalla completa
+        function exitFullscreen() {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.mozCancelFullScreen) {
+                document.mozCancelFullScreen();
+            } else if (document.webkitExitFullscreen) {
+                document.webkitExitFullscreen();
+            } else if (document.msExitFullscreen) {
+                document.msExitFullscreen();
+            }
+        }
+
+        // Detectar cambios en la pantalla completa para actualizar iconos y comportamiento
+        function handleFullscreenChange() {
+            const isFullscreen = document.fullscreenElement || 
+                                 document.webkitFullscreenElement || 
+                                 document.mozFullScreenElement || 
+                                 document.msFullscreenElement;
+
+            if (isFullscreen) {
+                fsIconEnter.classList.add('hidden');
+                fsIconExit.classList.remove('hidden');
+            } else {
+                fsIconEnter.classList.remove('hidden');
+                fsIconExit.classList.add('hidden');
+                
+                // Si el usuario sale de pantalla completa mediante la tecla ESC
+                // mantenemos el contenedor activo pero le avisamos que puede regresar al menú
+                showToast("Has salido de la pantalla completa.");
+            }
+        }
+
+        document.addEventListener('fullscreenchange', handleFullscreenChange);
+        document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+        document.addEventListener('mozfullscreenchange', handleFullscreenChange);
+        document.addEventListener('MSFullscreenChange', handleFullscreenChange);
+
+        // Evento iniciar experiencia
+        startBtn.addEventListener('click', () => {
+            // Ocultar bienvenida, mostrar contenedor
+            welcomeScreen.classList.add('opacity-0', 'pointer-events-none');
+            setTimeout(() => {
+                welcomeScreen.classList.add('hidden');
+                appContainer.classList.remove('hidden');
+                
+                // Cargar el iframe una vez activada la pantalla completa
+                playerIframe.src = targetUrl;
+                
+                // Intentar pantalla completa en el contenedor principal
+                launchFullscreen(appContainer);
+                
+                showToast("Cargando Player Retro... Mueve el cursor abajo para ver los controles.");
+            }, 500);
+        });
+
+        // Evento Recargar
+        reloadBtn.addEventListener('click', () => {
+            playerIframe.src = targetUrl;
+            showToast("Recargando reproductor...");
+        });
+
+        // Evento Alternar Pantalla Completa manual
+        fullscreenBtn.addEventListener('click', () => {
+            const isFullscreen = document.fullscreenElement || 
+                                 document.webkitFullscreenElement || 
+                                 document.mozFullScreenElement || 
+                                 document.msFullscreenElement;
+            if (isFullscreen) {
+                exitFullscreen();
+            } else {
+                launchFullscreen(appContainer);
+            }
+        });
+
+        // Evento Salir de la aplicación y volver al menú
+        exitBtn.addEventListener('click', () => {
+            exitFullscreen();
+            
+            // Detener el iframe cargando una página en blanco
+            playerIframe.src = "about:blank";
+            
+            // Mostrar de nuevo la bienvenida de forma fluida
+            appContainer.classList.add('hidden');
+            welcomeScreen.classList.remove('hidden');
+            setTimeout(() => {
+                welcomeScreen.classList.remove('opacity-0', 'pointer-events-none');
+            }, 50);
+        });
+
+        // Ocultar/Mostrar automáticamente la barra flotante según el movimiento del mouse
+        let mouseTimer;
+        document.addEventListener('mousemove', () => {
+            const isFullscreen = document.fullscreenElement || 
+                                 document.webkitFullscreenElement || 
+                                 document.mozFullScreenElement || 
+                                 document.msFullscreenElement;
+
+            if (isFullscreen) {
+                // Hacer visible la barra al mover el ratón
+                controlBar.classList.remove('opacity-0');
+                controlBar.classList.add('opacity-100');
+                
+                // Resetear temporizador para volver a ocultarla tras 3 segundos de inactividad
+                clearTimeout(mouseTimer);
+                mouseTimer = setTimeout(() => {
+                    // Solo ocultar si el puntero no está encima directamente de la barra
+                    if (!controlBar.matches(':hover')) {
+                        controlBar.classList.remove('opacity-100');
+                        controlBar.classList.add('opacity-0');
+                    }
+                }, 3000);
+            }
+        });
+
+        // Asegurar que si el ratón entra en la barra no se oculte
+        controlBar.addEventListener('mouseenter', () => {
+            clearTimeout(mouseTimer);
+            controlBar.classList.add('opacity-100');
+        });
+    </script>
 </body>
 </html>
-
-
