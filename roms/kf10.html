@@ -2,27 +2,174 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The King of Fighters 10th Anniversary 2005  </title>
+    <!-- Meta etiquetas esenciales para dispositivos móviles (evita zoom y oculta barras si se añade a inicio) -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Metal Slug - RetroPlay</title>
+    
     <style>
-        body {
+        /* Reiniciamos márgenes y forzamos a que ocupe toda la ventana */
+        body, html {
             margin: 0;
             padding: 0;
-            overflow: hidden; /* Oculta barras de desplazamiento */
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            background-color: #000;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* El iframe ocupa el 100% del espacio disponible */
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+
+        /* Pantalla de inicio táctil/clic para activar pantalla completa */
+        #splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: radial-gradient(circle, #1a1a2e 0%, #0f0f1b 100%);
+            z-index: 99999;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            background-color: #000;
+            cursor: pointer;
+            color: #fff;
+            text-align: center;
+            transition: opacity 0.5s ease-out;
         }
-        iframe {
-            display: block;
+
+        /* Estilos de diseño retro/arcade para la pantalla de carga */
+        .arcade-title {
+            font-size: 3rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: #ff3e6c;
+            text-shadow: 0 0 10px rgba(255, 62, 108, 0.8), 0 0 20px rgba(255, 62, 108, 0.5);
+            margin-bottom: 10px;
+            animation: pulse 1.5s infinite alternate;
+        }
+
+        .arcade-subtitle {
+            font-size: 1.2rem;
+            color: #00f0ff;
+            text-shadow: 0 0 8px rgba(0, 240, 255, 0.6);
+            margin-bottom: 40px;
+            font-weight: 600;
+        }
+
+        .start-prompt {
+            font-size: 1.5rem;
+            background: linear-gradient(45deg, #ff3e6c, #ffbe0b);
+            padding: 15px 40px;
+            border-radius: 50px;
+            box-shadow: 0 0 15px rgba(255, 62, 108, 0.4);
+            font-weight: bold;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes pulse {
+            from { transform: scale(0.98); }
+            to { transform: scale(1.02); }
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Mensaje de aviso flotante en caso de bloqueo */
+        #error-toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(231, 76, 60, 0.9);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            z-index: 100000;
+            display: none;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            max-width: 80%;
         }
     </style>
 </head>
 <body>
 
+    <!-- Pantalla de bienvenida que actúa como disparador del gesto de usuario para pantalla completa -->
+    <div id="splash-screen">
+        <div class="arcade-title">THE KING OF FIGHTER</div>
+        <div class="arcade-subtitle"> 10th ANNIVERSARY 2005</div>
+        <div class="start-prompt">CLICK / TOCAR PARA JUGAR</div>
+    </div>
+
+    <!-- Mensaje de advertencia si el navegador bloquea la acción en el Preview -->
+    <div id="error-toast"></div>
+
 <iframe src="https://www.retrogames.cc/embed/10375-the-king-of-fighters-10th-anniversary-2005-unique-bootleg-bootleg.html" width="600" height="450" frameborder="no" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" scrolling="no"></iframe>
 
 
+    <script>
+        const splash = document.getElementById('splash-screen');
+        const toast = document.getElementById('error-toast');
+
+        // Al hacer clic en cualquier parte de la pantalla de bienvenida
+        splash.addEventListener('click', () => {
+            const docElm = document.documentElement;
+            let promise;
+
+            // Intentamos entrar en pantalla completa usando el estándar y navegadores antiguos
+            if (docElm.requestFullscreen) {
+                promise = docElm.requestFullscreen();
+            } else if (docElm.mozRequestFullScreen) { /* Firefox */
+                promise = docElm.mozRequestFullScreen();
+            } else if (docElm.webkitRequestFullscreen) { /* Chrome, Safari y Opera */
+                promise = docElm.webkitRequestFullscreen();
+            } else if (docElm.msRequestFullscreen) { /* IE/Edge */
+                promise = docElm.msRequestFullscreen();
+            }
+
+            // Ocultamos la pantalla de inicio inmediatamente para mostrar el juego
+            hideSplashScreen();
+
+            // Manejo de la promesa de pantalla completa (por si el entorno del navegador la bloquea)
+            if (promise && typeof promise.catch === 'function') {
+                promise.catch(err => {
+                    console.warn("Pantalla completa bloqueada por políticas de seguridad del iframe:", err);
+                    showToast("La vista previa de esta herramienta bloquea la pantalla completa por seguridad. ¡No te preocupes, funcionará perfectamente cuando lo subas a tu servidor de GitHub!");
+                });
+            }
+        });
+
+        // Oculta la pantalla de inicio suavemente
+        function hideSplashScreen() {
+            splash.style.opacity = '0';
+            setTimeout(() => {
+                splash.style.display = 'none';
+            }, 500); // Esperamos a que termine la transición de opacidad
+        }
+
+        // Muestra avisos emergentes
+        function showToast(message) {
+            toast.textContent = message;
+            toast.style.display = 'block';
+            setTimeout(() => {
+                toast.style.display = 'none';
+            }, 6000);
+        }
+    </script>
 </body>
 </html>
