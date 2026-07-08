@@ -45,29 +45,38 @@
 </head>
 
 <body>
+<button id="instalar" style="display:none;">
+    📲 Añadir a la pantalla principal
+</button>
 
+<script>
+let deferredPrompt;
+const btn = document.getElementById("instalar");
+
+window.addEventListener("beforeinstallprompt", (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    btn.style.display = "inline-block";
+});
+
+btn.addEventListener("click", async () => {
+    if (!deferredPrompt) return;
+
+    deferredPrompt.prompt();
+
+    await deferredPrompt.userChoice;
+
+    deferredPrompt = null;
+    btn.style.display = "none";
+});
+</script>
 <body style="background:black; color:white; text-align:center;">
 
 <h1>🚧 BAJO CONSTRUCCIÓN 🚧</h1>
 
 <img src="con1.webp" alt="Bajo Construcción">
 
-<script>
-let deferredPrompt;
 
-window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
-
-    if (confirm("¿Deseas añadir esta aplicación a la pantalla principal?")) {
-        deferredPrompt.prompt();
-
-        deferredPrompt.userChoice.then(() => {
-            deferredPrompt = null;
-        });
-    }
-});
-</script>
 
 </body>
 
@@ -81,11 +90,6 @@ window.addEventListener('beforeinstallprompt', (e) => {
 
     <img src="con1.webp" alt="Bajo Construcción">
 
-<script>
-if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('sw.js');
-}
-</script>
 
 </body>
 
