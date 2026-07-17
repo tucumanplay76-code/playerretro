@@ -1,130 +1,113 @@
- 
-<!-- saved from url=(0049)https://tucumanplay76-code.github.io/playerretro/ -->
-<html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>ROBOTECH</title>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <!-- Meta etiquetas esenciales para dispositivos móviles (evita zoom y oculta barras si se añade a inicio) -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>ROBOTECH</title>
+    
+    <style>
+        /* Reiniciamos márgenes y forzamos a que ocupe toda la ventana */
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            background-color: #000;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-  <!-- Fuente retro pixelada -->
-  <link href="./RETRO PLAYER_files/css2" rel="stylesheet">
+        /* El iframe ocupa el 100% del espacio disponible */
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
 
-  <style>
-    body {
-      margin:0;
-      background:#000;
-      color:#fff;
-      font-family:Arial, sans-serif;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-    }
+        /* Pantalla de inicio táctil/clic para activar pantalla completa */
+        #splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: radial-gradient(circle, #1a1a2e 0%, #0f0f1b 100%);
+            z-index: 99999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            color: #fff;
+            text-align: center;
+            transition: opacity 0.5s ease-out;
+        }
 
-    /* Estilo retro gamer para el título */
-    h1 {
-      margin:20px;
-      font-family:"Press Start 2P", monospace;
-      font-size:clamp(20px, 5vw, 36px); /* 🔹 Se ajusta según pantalla */
-      color:#ff0040;
-      text-align:center;
-      text-shadow:
-        2px 2px 0 #000,
-        -2px -2px 0 #000,
-        2px -2px 0 #000,
-        -2px 2px 0 #000;
-    }
+        /* Estilos de diseño retro/arcade para la pantalla de carga */
+        .arcade-title {
+            font-size: 3rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: #ff3e6c;
+            text-shadow: 0 0 10px rgba(255, 62, 108, 0.8), 0 0 20px rgba(255, 62, 108, 0.5);
+            margin-bottom: 10px;
+            animation: pulse 1.5s infinite alternate;
+        }
 
-    /* Botones de navegación */
-    .nav {
-      margin:20px 0 10px;
-      display:flex;
-      gap:20px;
-      flex-wrap:wrap;
-      justify-content:center;
-    }
-    .nav a {
-      background:linear-gradient(90deg,#7c5cff,#00d4ff);
-      color:#fff;
-      text-decoration:none;
-      padding:10px 20px;
-      border-radius:8px;
-      font-size:16px;
-      transition:background .3s;
-    }
-    .nav a:hover {
-      background:linear-gradient(90deg,#5a3cff,#00a4cc);
-    }
+        .arcade-subtitle {
+            font-size: 1.2rem;
+            color: #00f0ff;
+            text-shadow: 0 0 8px rgba(0, 240, 255, 0.6);
+            margin-bottom: 40px;
+            font-weight: 600;
+        }
 
-    /* Índice numérico */
-    .indice {
-      display:flex;
-      gap:12px;
-      margin:10px 0 30px;
-      justify-content:center;
-      flex-wrap:wrap;
-    }
-    .indice a {
-      color:#fff;
-      text-decoration:none;
-      padding:10px 16px;
-      border-radius:50%;
-      background:#000;
-      font-weight:bold;
-      transition:all 0.3s ease;
-      box-shadow:0 0 6px rgba(0,0,0,0.4);
-    }
-    .indice a:hover {
-      background:#0b70e3;
-      transform:scale(1.2);
-      box-shadow:0 0 12px #0b70e3;
-    }
-    .indice a.active {
-      background:#0b70e3;
-      color:#fff;
-      box-shadow:0 0 12px #0b70e3;
-    }
+        .start-prompt {
+            font-size: 1.5rem;
+            background: linear-gradient(45deg, #ff3e6c, #ffbe0b);
+            padding: 15px 40px;
+            border-radius: 50px;
+            box-shadow: 0 0 15px rgba(255, 62, 108, 0.4);
+            font-weight: bold;
+            animation: blink 1s infinite;
+        }
 
-    /* Grid de juegos (RESPONSIVO) */
-    .grid {
-      display:grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); /* 🔹 Se adapta automáticamente */
-      gap:20px;
-      padding:20px;
-      width:100%;
-      max-width:1300px;
-      box-sizing:border-box;
-    }
-    .game {
-      width:100%;
-      aspect-ratio: 3 / 4; /* 🔹 Mantiene proporción */
-      border-radius:12px;
-      overflow:hidden;
-      cursor:pointer;
-      transition:transform .3s, box-shadow .3s;
-    }
-    .game img {
-      width:100%;
-      height:100%;
-      object-fit:cover;
-    }
-    .game:hover {
-      transform:scale(1.05);
-      box-shadow:0 8px 20px rgba(0,0,0,0.5);
-    }
+        @keyframes pulse {
+            from { transform: scale(0.98); }
+            to { transform: scale(1.02); }
+        }
 
-    /* 📱 Ajustes para pantallas pequeñas */
-    @media (max-width:768px) {
-      .nav a { font-size:14px; padding:8px 14px; }
-      .indice a { padding:8px 14px; }
-    }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
 
-    @media (max-width:480px) {
-      .nav a { font-size:12px; padding:6px 10px; }
-      .indice a { padding:6px 10px; }
-    }
-  </style>
+        /* Mensaje de aviso flotante en caso de bloqueo */
+        #error-toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(231, 76, 60, 0.9);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            z-index: 100000;
+            display: none;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            max-width: 80%;
+        }
+    </style>
 </head>
 <body>
-
   <h1>ROBOTECH</h1>
 
 <style>
