@@ -1,57 +1,169 @@
- <!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <!-- Meta etiquetas esenciales para dispositivos móviles (evita zoom y oculta barras si se añade a inicio) -->
-    
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 
+<!-- saved from url=(0049)https://tucumanplay76-code.github.io/playerretro/ -->
+<html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ROBOTECH</title>
 
-<link rel="icon" type="image/x-icon" href="/playerretro/ro.ico?v=2">
-  <link rel="shortcut icon" href="/playerretro/ro.ico?v=2" type="image/x-icon">
-<link rel="icon" type="image/x-icon" href="/playerretro/ro.ico?v=2">
-<link rel="apple-touch-icon" href="/playerretro/ro.ico">
+  <!-- Fuente retro pixelada -->
+  <link href="./RETRO PLAYER_files/css2" rel="stylesheet">
 
+  <style>
+    body {
+      margin:0;
+      background:#000;
+      color:#fff;
+      font-family:Arial, sans-serif;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+    }
+
+    /* Estilo retro gamer para el título */
+    h1 {
+      margin:20px;
+      font-family:"Press Start 2P", monospace;
+      font-size:clamp(20px, 5vw, 36px); /* 🔹 Se ajusta según pantalla */
+      color:#ff0040;
+      text-align:center;
+      text-shadow:
+        2px 2px 0 #000,
+        -2px -2px 0 #000,
+        2px -2px 0 #000,
+        -2px 2px 0 #000;
+    }
+
+    /* Botones de navegación */
+    .nav {
+      margin:20px 0 10px;
+      display:flex;
+      gap:20px;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+    .nav a {
+      background:linear-gradient(90deg,#7c5cff,#00d4ff);
+      color:#fff;
+      text-decoration:none;
+      padding:10px 20px;
+      border-radius:8px;
+      font-size:16px;
+      transition:background .3s;
+    }
+    .nav a:hover {
+      background:linear-gradient(90deg,#5a3cff,#00a4cc);
+    }
+
+    /* Índice numérico */
+    .indice {
+      display:flex;
+      gap:12px;
+      margin:10px 0 30px;
+      justify-content:center;
+      flex-wrap:wrap;
+    }
+    .indice a {
+      color:#fff;
+      text-decoration:none;
+      padding:10px 16px;
+      border-radius:50%;
+      background:#000;
+      font-weight:bold;
+      transition:all 0.3s ease;
+      box-shadow:0 0 6px rgba(0,0,0,0.4);
+    }
+    .indice a:hover {
+      background:#0b70e3;
+      transform:scale(1.2);
+      box-shadow:0 0 12px #0b70e3;
+    }
+    .indice a.active {
+      background:#0b70e3;
+      color:#fff;
+      box-shadow:0 0 12px #0b70e3;
+    }
+
+    /* Grid de juegos (RESPONSIVO) */
+    .grid {
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); /* 🔹 Se adapta automáticamente */
+      gap:20px;
+      padding:20px;
+      width:100%;
+      max-width:1300px;
+      box-sizing:border-box;
+    }
+    .game {
+      width:100%;
+      aspect-ratio: 3 / 4; /* 🔹 Mantiene proporción */
+      border-radius:12px;
+      overflow:hidden;
+      cursor:pointer;
+      transition:transform .3s, box-shadow .3s;
+    }
+    .game img {
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+    .game:hover {
+      transform:scale(1.05);
+      box-shadow:0 8px 20px rgba(0,0,0,0.5);
+    }
+
+    /* 📱 Ajustes para pantallas pequeñas */
+    @media (max-width:768px) {
+      .nav a { font-size:14px; padding:8px 14px; }
+      .indice a { padding:8px 14px; }
+    }
+
+    @media (max-width:480px) {
+      .nav a { font-size:12px; padding:6px 10px; }
+      .indice a { padding:6px 10px; }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>ROBOTECH</h1>
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+/* ======== BANNER ESTILO ======== */
+.banner-info {
+  display: block;           /* Ocupa todo el ancho */
+  background: linear-gradient(90deg, #ffcc00 0%, #ff6600 100%);
+  color: #000;
+  text-align: center;
+  font-family: 'Press Start 2P', cursive; /* Fuente retro opcional */
+  padding: 15px 10px;
+  font-size: 14px;
+  letter-spacing: 1px;
+  border-bottom: 3px solid #000;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+  position: sticky;     /* Siempre visible al hacer scroll */
+  top: 0;
+  z-index: 9999;
+  text-decoration: none;    /* Quita subrayado */
+  transition: background 0.3s ease;
 }
 
-body{
-    background:#000;
+.banner-info:hover {
+  background: linear-gradient(90deg, #ffee00 0%, #ff8800 100%);
 }
 
-.responsive-frame{
-    width:70%;
-    max-width:700px;
-    aspect-ratio:4/3;
-    border:none;
-    display:block;
-    margin:auto;
-}
-
-/* Celulares */
-@media (max-width:768px){
-    .responsive-frame{
-        width:70%;
-        height:auto;
-    }
+/* 🔹 Ajuste en pantallas chicas */
+@media (max-width: 600px) {
+  .banner-info {
+    font-size: 10px;
+    padding: 10px 5px;
+  }
 }
 </style>
-</head>
-    <title>ROBOTECH</title>
 
+  <iframe src="https://www.retrogames.cc/embed/26883-robotech-the-macross-saga-u-mode7.html" width="600" height="450" frameborder="no" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" scrolling="no" allow="cross-origin-isolated"></iframe>
 
-<center>
-<br>
-
-       <iframe src="https://www.retrogames.cc/embed/26883-robotech-the-macross-saga-u-mode7.html" width="600" height="450" frameborder="no" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" scrolling="no" allow="cross-origin-isolated"></iframe>
+ 
 
 
 
-</center>
-
-</body>
-</html>
+</body></html>
