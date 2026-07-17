@@ -1,0 +1,72 @@
+  <!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Robotech - The Macross Saga</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#000;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    overflow:hidden;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+.game-container{
+    width:100%;
+    max-width:1000px;
+    padding:10px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.game-wrapper{
+    position:relative;
+    width:100%;
+    aspect-ratio:4 / 3;
+}
+
+.game-wrapper iframe{
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    width: 70%;
+    height: 70%;
+    border: none;
+    transform: translate(-50%, -50%);
+
+}
+</style>
+
+</head>
+<body>
+
+<div class="game-container">
+    <div class="game-wrapper">
+
+        <iframe
+            src="https://www.retrogames.cc/embed/26883-robotech-the-macross-saga-u-mode7.html"
+            allowfullscreen
+            webkitallowfullscreen
+            mozallowfullscreen
+            scrolling="no"
+            allow="cross-origin-isolated">
+        </iframe>
+
+    </div>
+</div>
+
+</body>
+</html>
