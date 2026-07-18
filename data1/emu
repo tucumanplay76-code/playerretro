@@ -1,0 +1,11 @@
+<div style="width:640px;height:480px;max-width:100%">
+    <div id="game"></div>
+</div>
+
+<script>
+EJS_player = "#game";
+EJS_gameUrl = "https://raw.githubusercontent.com/tucumanplay76-code/playerretro/main/data1/bwingsa.zip";
+EJS_core = "hbmame";
+</script>
+
+<script src="https://www.emulatorjs.com/loader.js"></script>
